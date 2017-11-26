@@ -1,0 +1,31 @@
+{
+  "name"             : "FBnil/laradiff",
+  "description"      : "Unicode supported diff algorithm with html output for Laravel 5",
+  "keywords"         : [
+    "laravel",
+    "diff",
+    "compare"
+  ],
+  "license"          : "MIT",
+  "homepage"         : "https://github.com/FBnil/laradiff",
+  "authors"          : [
+    {
+      "name" : "FBnil",
+      "email": ""
+    }
+  ],
+  "require"          : {
+    "php": ">=5.5"
+  },
+  "autoload"         : {
+    "psr-4": {
+      "laradiff\\": "src/Laradiff"
+    }
+  },
+  "autoload-dev"     : {
+    "psr-4": {
+	  "laradiff\\": "tests/Laradiff"
+	}
+  },
+  "minimum-stability": "dev"
+}
