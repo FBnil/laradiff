@@ -19,12 +19,12 @@
   },
   "autoload"         : {
     "psr-4": {
-      "laradiff\\": "src/Laradiff"
+      "Laradiff\\": "src/Laradiff"
     }
   },
   "autoload-dev"     : {
     "psr-4": {
-	  "laradiff\\": "tests/Laradiff"
+	  "Laradiff\\": "tests/Laradiff"
 	}
   },
   "minimum-stability": "dev"
