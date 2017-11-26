@@ -37,9 +37,9 @@ class Diff{
 
 	/* Returns the diff for two strings. The return value is an array, each of
 	* whose values is an array containing two values: a line (or character, if
-	* $compareCharacters is true), and one of the constants DIFF::UNMODIFIED (the
-	* line or character is in both strings), DIFF::DELETED (the line or character
-	* is only in the first string), and DIFF::INSERTED (the line or character is
+	* $compareCharacters is true), and one of the constants Diff::UNMODIFIED (the
+	* line or character is in both strings), Diff::DELETED (the line or character
+	* is only in the first string), and Diff::INSERTED (the line or character is
 	* only in the second string). The parameters are:
 	*
 	* @param $string1           - the first string
@@ -47,7 +47,7 @@ class Diff{
 	* @param $compareCharacters - true to compare characters, and false to compare lines;
 	*                             this optional parameter defaults to false
 	*/
-	public static function compare($string1, $string2, $compareCharacters = false) {
+	public static function compareText($string1, $string2, $compareCharacters = false) {
 		return new self($string1, $string2, $compareCharacters);
 	}
 
@@ -60,9 +60,9 @@ class Diff{
 		return preg_split('//u', $string, -1, PREG_SPLIT_NO_EMPTY);
 	}
 
-	protected function __construct($string1, $string2, $compareCharacters = false) {
-
+	public function compare($string1, $string2, $compareCharacters = false) {
 		$this->compareCharacters = $compareCharacters;
+		if(!is_string($string1)) dd(['notstring'=>$string1]);
 
 		// initialise the sequences and comparison start and end positions
 		$start = 0;
@@ -116,7 +116,14 @@ class Diff{
 
 		// return the diff
 		$this->diff = $diff;
+	}
 
+	public function __construct($string1 = "", $string2 = "", $compareCharacters = false) {
+
+		if(!is_string($string1) || (!$string1 && !$string2))
+			return $this;
+		else
+			return $this->compare($string1, $string2, $compareCharacters = false);
 	}
 
 	/* Returns the diff for two files. The parameters are:
@@ -126,10 +133,10 @@ class Diff{
 	* $compareCharacters - true to compare characters, and false to compare
 	*                      lines; this optional parameter defaults to false
 	*/
-	public function compareFiles($file1, $file2, $compareCharacters = false) {
+	public static function compareFiles($file1, $file2, $compareCharacters = false) {
 
 		// return the diff of the files. TODO: needs is_readable() and a throw?
-		return self::compare(
+		return self::compareText(
 			file_get_contents($file1),
 			file_get_contents($file2),
 			$compareCharacters
