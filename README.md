@@ -33,10 +33,12 @@ I am also still molding it to be better code (exceptions, checks for is_readable
 
 ## Installation
 
+TODO: add this package to packagist for this to work:
+
 Using `composer`:
 
 ```bash
-composer require FBnil/laravel-diff
+composer require FBnil/laradiff
 ```
 
 ---
@@ -82,12 +84,21 @@ Simple oneliner:
 $htmlSnippet = \Laradiff\Diff::compareFiles($file1, $file2)->toHtml();
 ```
 
-Other examples:
+As a reusable object:
+```php
+use Laradiff\Diff as Laradiff; # allow new LaraDiff();
+$d = new Laradiff();
+$d->compare("a\nb", "A\nb");
+echo $d->toString();
+```
+
+
+Other examples (statically called):
 
 ```php
 use \Laradiff\Diff as Diff;
 // Compare string line by line
-$diff = Diff::compare("hello\n!", "hello\nworld\n!");
+$diff = Diff::compareText("hello\n!", "hello\nworld\n!");
 // Outputs span with ins and del HTML tags. You can embed this in a div.
 $html = $diff->toHTML();
 

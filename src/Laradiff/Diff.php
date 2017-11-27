@@ -114,8 +114,10 @@ class Diff{
 			$diff[] = array($sequence1[$index], self::UNMODIFIED);
 		}
 
-		// return the diff
 		$this->diff = $diff;
+
+		// return the diff
+		return $this;
 	}
 
 	public function __construct($string1 = "", $string2 = "", $compareCharacters = false) {
