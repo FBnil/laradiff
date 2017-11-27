@@ -4,6 +4,7 @@ This package allows easy comparison of two texts and yields output in plain text
 
 The [Laravel-Diff](https://github.com/vi-kon/laravel-diff) package has a broken diff algorithm (as of dec 2017) and did not support Unicode. The algorithm used is the [diff implementation of Stephen Morley](http://code.stephenmorley.org/php/diff-implementation/) wrapped in a composer implementation.
 
+Stephen liked static classes a lot, so compareText() and compareFiles() are static, and compare() is non-static.
 
 Warning: Alpha code:
 I am also still molding it to be better code (exceptions, checks for is_readable() etc).
